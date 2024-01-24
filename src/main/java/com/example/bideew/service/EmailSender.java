@@ -40,7 +40,7 @@ public class EmailSender {
     public void sendEmail(ContactMessage contactForm) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(contactForm.getEmail()); // Set the "From" address to the provided value
-        message.setTo("loicyoualeu@gmail.com");
+        message.setTo("bideewsports@gmail.com");
         message.setSubject("New Contact Form Submission From Bideew");
         message.setText("Name: " + contactForm.getName() +
                         "\nEmail: " + contactForm.getEmail() +
