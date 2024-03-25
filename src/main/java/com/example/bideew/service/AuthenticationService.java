@@ -51,7 +51,7 @@ public class AuthenticationService {
                 tempUser.setEnable(true);
                 userRepository.save(tempUser);              
                 String jwtToken = jwtService.generateToken(tempUser);
-                String link = "http://localhost:8080/api/verify?email=" + tempUser.getEmail() + "&code=" + tempUser.getVerificationToken();;
+                String link = "https://bideew-2e4c9e77133a.herokuapp.com/api/verify?email=" + tempUser.getEmail() + "&code=" + tempUser.getVerificationToken();;
                 emailSender.send(reqUser.getEmail(),
                         buildEmail(reqUser.getName(), link));
                 
