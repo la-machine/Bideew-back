@@ -8,6 +8,6 @@ import com.example.bideew.model.Infor;
 import com.example.bideew.model.Type;
 
 public interface InforRepository extends JpaRepository<Infor, Long> {
-    Infor findByTitle(String title);
-    List<Infor> findByEvenType(Type type);
+    Infor findByEnableAndTitle(Boolean enable,String title);
+    List<Infor> findByEnableAndEvenType(Boolean enable, Type type);
 }

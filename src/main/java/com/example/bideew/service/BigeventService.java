@@ -22,7 +22,7 @@ public class BigeventService {
     private final InforRepository inforRepository;
 
     public ResponseEntity<?> getAllEvents(){
-        List<Infor> events = inforRepository.findByEvenType(Type.BigEvent);
+        List<Infor> events = inforRepository.findByEnableAndEvenType(true, Type.BigEvent);
         Iterator<Infor> iterator = events.iterator();
         List<Infor> filteredEvents = new ArrayList<>();
         while (iterator.hasNext()) {
@@ -36,7 +36,7 @@ public class BigeventService {
     }
 
     public ResponseEntity<?> addEvent(MultipartFile img, String title, String description) throws IOException{
-        Infor tempInfor = inforRepository.findByTitle(title);
+        Infor tempInfor = inforRepository.findByEnableAndTitle(true, title);
         if(tempInfor != null){
             return ResponseEntity.status(400).body("Event with this title already exist");
         }
@@ -47,7 +47,7 @@ public class BigeventService {
     }
 
     public ResponseEntity<?> updatePodcast(MultipartFile img, String title, String description) throws IOException{
-        Infor infor = inforRepository.findByTitle(title);
+        Infor infor = inforRepository.findByEnableAndTitle(true, title);
         if (infor == null || !infor.getEnable()) {
             return ResponseEntity.badRequest().body("No Podcast with this title");
         }

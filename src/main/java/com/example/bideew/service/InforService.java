@@ -21,7 +21,7 @@ public class InforService {
     private InforRepository inforRepository;
 
     public ResponseEntity<?> uploadPodcast(MultipartFile podcast,MultipartFile img, String title, String description) throws IOException{
-        Infor tempInfor = inforRepository.findByTitle(title);
+        Infor tempInfor = inforRepository.findByEnableAndTitle(true, title);
         if(tempInfor != null){
             return ResponseEntity.status(400).body("Podcast with this title already exist");
         }
@@ -33,7 +33,7 @@ public class InforService {
     }
 
     public ResponseEntity<?> getPodcast(String title) throws IOException{
-        Infor infor = inforRepository.findByTitle(title);
+        Infor infor = inforRepository.findByEnableAndTitle(true, title);
         if (infor == null || !infor.getEnable()) {
             return ResponseEntity.badRequest().body("No podcast with this title");
         }
@@ -45,7 +45,7 @@ public class InforService {
     }
 
     public ResponseEntity<?> getAllPodcast() throws IOException{
-        List<Infor> infors = inforRepository.findByEvenType(Type.Podcast);
+        List<Infor> infors = inforRepository.findByEnableAndEvenType(true, Type.Podcast);
         if (infors == null) {
             return ResponseEntity.badRequest().body("There is no podcast in the database");
         }
@@ -61,7 +61,7 @@ public class InforService {
     }
 
     public ResponseEntity<?> updatePodcast(MultipartFile podcast,MultipartFile img, String title, String description) throws IOException{
-        Infor infor = inforRepository.findByTitle(title);
+        Infor infor = inforRepository.findByEnableAndTitle(true, title);
         if (infor == null || !infor.getEnable()) {
             return ResponseEntity.badRequest().body("No Podcast with this title");
         }
@@ -74,7 +74,7 @@ public class InforService {
     }
 
     public ResponseEntity<?> deletePodcast(String title){
-        Infor infor = inforRepository.findByTitle(title);
+        Infor infor = inforRepository.findByEnableAndTitle(true, title);
         if (infor == null || !infor.getEnable()) {
             return ResponseEntity.badRequest().body("No Podcast with this title");
         }

@@ -20,7 +20,7 @@ public class ZeA1Service {
     private final InforRepository inforRepository;
 
     public ResponseEntity<?> createA1(MultipartFile img, String title, String description) throws IOException{
-        Infor infor = inforRepository.findByTitle(title);
+        Infor infor = inforRepository.findByEnableAndTitle(true, title);
         if (infor != null) {
             if(infor.getEvenType() == Type.ZeA1){
                 return ResponseEntity.badRequest().body("Event with this title already exist");
@@ -35,7 +35,7 @@ public class ZeA1Service {
     }
 
     public ResponseEntity<?> getAllZeA1(){
-        List<Infor> zeA1s = inforRepository.findByEvenType(Type.ZeA1);
+        List<Infor> zeA1s = inforRepository.findByEnableAndEvenType(true, Type.ZeA1);
         return ResponseEntity.ok().body(zeA1s);
 
     }

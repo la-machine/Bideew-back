@@ -59,6 +59,7 @@ public class UserController {
         return inforService.updatePodcast(podcast,img, title, desc);
     }
 
+
     @PostMapping("/create-interview")
     public ResponseEntity<?> addInterview(@RequestParam("image") MultipartFile interview_img,@RequestParam("audio") MultipartFile interview_audio,@RequestParam("audio") MultipartFile interview_video,
         @RequestParam String title, @RequestParam String desc ) throws IOException{

@@ -21,7 +21,7 @@ public class ZeInsideService {
 
     public ResponseEntity<?> createInterview(MultipartFile video, MultipartFile audio,MultipartFile img,
          String title, String desc) throws IOException{
-        Infor inforExist = inforRepository.findByTitle(title);
+        Infor inforExist = inforRepository.findByEnableAndTitle(true, title);
         if (inforExist != null) {
             return ResponseEntity.badRequest().body("Information with this title already exist");
         }
@@ -34,7 +34,7 @@ public class ZeInsideService {
     }
 
     public ResponseEntity<?> getInterview(String title) throws IOException{
-        Infor inforExist = inforRepository.findByTitle(title);
+        Infor inforExist = inforRepository.findByEnableAndTitle(true, title);
         if (inforExist == null) {
             return ResponseEntity.badRequest().body("There is no inerview recorded with this title");
         }
@@ -44,7 +44,7 @@ public class ZeInsideService {
     }
 
     public ResponseEntity<?> getAllInterviews() throws IOException{
-        List<Infor> infors = inforRepository.findByEvenType(Type.ZeInside);
+        List<Infor> infors = inforRepository.findByEnableAndEvenType(true, Type.ZeInside);
         List<ZeInside> interviews = new ArrayList<>();
         for (Infor infor : infors) {
             ZeInside inside = ZeInside.builder().title(infor.getTitle())
@@ -58,7 +58,7 @@ public class ZeInsideService {
 
     public ResponseEntity<?> updateInterview(MultipartFile video, MultipartFile audio, MultipartFile image,
             String title, String desc) throws IOException {
-        Infor infor = inforRepository.findByTitle(title);
+        Infor infor = inforRepository.findByEnableAndTitle(true,title);
         if (infor == null) {
             return ResponseEntity.badRequest().body("No Podcast with this title");
         }
