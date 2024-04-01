@@ -33,6 +33,7 @@ public class CorsConfig {
         config.setAllowedMethods(Arrays.asList(
             HttpMethod.GET.name(),
             HttpMethod.POST.name(),
+            HttpMethod.DELETE.name(),
             HttpMethod.PUT.name()
         ));
         config.setMaxAge(3600L);
