@@ -18,6 +18,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public class CorsConfig {
     
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Bean
     public FilterRegistrationBean corsFilter(){
         System.out.println("=========== corsFilter ==========");
