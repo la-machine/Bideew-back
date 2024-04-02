@@ -18,7 +18,7 @@ import com.example.bideew.service.InforService;
 import com.example.bideew.service.UserService;
 import com.example.bideew.service.ZeInsideService;
 
-@CrossOrigin
+// @CrossOrigin
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
