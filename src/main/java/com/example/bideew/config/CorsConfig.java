@@ -25,7 +25,8 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("https://www.bideew.fr");
+        // config.addAllowedOrigin("https://www.bideew.fr");
+        config.addAllowedOrigin("*");
         config.setAllowedHeaders(Arrays.asList(
             HttpHeaders.AUTHORIZATION,
             HttpHeaders.CONTENT_TYPE,

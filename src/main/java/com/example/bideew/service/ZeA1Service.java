@@ -38,5 +38,21 @@ public class ZeA1Service {
         List<Infor> zeA1s = inforRepository.findByEnableAndEvenType(true, Type.ZeA1);
         return ResponseEntity.ok().body(zeA1s);
 
+
     }
+    
+    public ResponseEntity<?> update(MultipartFile img, String title, String description) throws IOException{
+        Infor infor = inforRepository.findByEnableAndTitle(true, title);
+        if (infor == null) {
+            return ResponseEntity.badRequest().body("No Event with this title");
+        }
+
+        infor.setDescription(description);
+        infor.setTitle(title);
+        infor.setImage(FileUploadUtil.saveFile(img.getOriginalFilename(), img));
+        
+        inforRepository.save(infor);
+        return ResponseEntity.ok().build();
+    }
+
 }
